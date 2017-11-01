@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Form.css';
 
 class Form extends Component {
 	constructor(props) {
@@ -12,7 +13,7 @@ class Form extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault()
 		const state = this.state
-		state.item = document.getElementById('choices').value
+		state.item = document.getElementsByClassName('choices')[0].value
 		state.itemName = document.getElementById('itemName').value
 		this.props.addItem(state.item, state.itemName)
 		this.setState(state)
@@ -23,15 +24,20 @@ class Form extends Component {
 		return(
 
 			<div>
-				<form>
-					<select id = "choices">
+				<form className="row justify-content-center">
+					<select className="col-sm-4 choices form-control" id="exampleFormControlSelect1">
 						<option value="fruits">Fruit</option>
 						<option value="vegetables">Vegetable</option>
 					</select>
-					<input type="text" placeholder="Item Name" id="itemName" />
-					<button onClick={this.handleSubmit}>Add</button>
+					<div className="col-sm-4 myForm input-group">
+				      <input type="text" className="form-control" placeholder="Item Name" id="itemName" />
+				      <span className="input-group-btn">
+				        <button className="btn btn-secondary" type="button" onClick={this.handleSubmit}>Add</button>
+				      </span>
+				    </div>
 				</form>
 			</div>
+
 
 		)
 	}
